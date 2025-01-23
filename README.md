@@ -37,7 +37,7 @@
 ## Screenshots
 
 ### Home Screen
-![Home Screen](screenshots/home.png)
+<img src="screenshots/home.png" alt="home" width="200">
 - 앱 실행 시 보이는 **홈 화면**입니다.
 - 사용자가 원하는 지역을 입력하면 해당 지역의 날씨 정보를 확인할 수 있습니다.
 
