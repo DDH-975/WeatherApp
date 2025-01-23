@@ -38,7 +38,7 @@ public class ShowWeather extends AppCompatActivity {
     private ImageButton btnBack;
     private boolean isNcstDataReady = false;
     private boolean isFcstDataReady = false;
-    String Apikey = BuildConfig.Apikey;
+    private String Apikey = BuildConfig.Apikey;
 
 
     public void API_Request(String base_date, String ncstTime, String fcstTime, String fcstDate, int nx, int ny) {
