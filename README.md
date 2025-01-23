@@ -1,6 +1,6 @@
 # 날씨 앱 (Weather App)
 
-**날씨 앱**은 <a href="[https://data.kma.go.kr/portal/](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084)">공공 데이터 포털의 기상청_단기예보 ((구)_동네예보)</a> 조회서비스 API를 사용하여 사용자가 입력한 지역에 대한 **실시간 날씨 정보**를 제공합니다. 앱은 **온도**, **습도**, **강수량** 등의 정보를 보여주며, 날씨 데이터를 직관적으로 확인할 수 있습니다.
+**날씨 앱**은 <a href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084">공공 데이터 포털의 기상청_단기예보 ((구)_동네예보)</a> 조회서비스 API를 사용하여 사용자가 입력한 지역에 대한 **실시간 날씨 정보**를 제공합니다. 앱은 **온도**, **습도**, **강수량** 등의 정보를 보여주며, 날씨 데이터를 직관적으로 확인할 수 있습니다.
 
 
 ## 설명
