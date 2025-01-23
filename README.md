@@ -42,7 +42,7 @@
 - 사용자가 원하는 지역을 입력하면 해당 지역의 날씨 정보를 확인할 수 있습니다.
 
 ### Weather Details
-![Weather Details](screenshots/weather_details.png)
+<img src="screenshots/showweather.png" alt="home" width="200">
 - 각 지역에 대한 **세부 날씨 정보**를 확인할 수 있는 화면입니다.
 - **온도**, **습도**, **풍속**, **강수량** 등의 세부 데이터를 제공합니다.
 
