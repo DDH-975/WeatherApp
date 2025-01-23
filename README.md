@@ -38,16 +38,17 @@
 
 ### Home Screen
 <img src="screenshots/home.png" alt="home" width="200">
+
 - 앱 실행 시 보이는 **홈 화면**입니다.
 - 사용자가 원하는 지역을 입력하면 해당 지역의 날씨 정보를 확인할 수 있습니다.
 
 ### Weather Details
 <img src="screenshots/showweather.png" alt="home" width="200">
+
 - 각 지역에 대한 **세부 날씨 정보**를 확인할 수 있는 화면입니다.
 - **온도**, **습도**, **풍속**, **강수량** 등의 세부 데이터를 제공합니다.
 
 
 ## 실행 화면
 
-![App Demo](video/testvideo.gif)
-- 날씨 정보가 부드러운 애니메이션으로 전환됩니다. 사용자에게 직관적이고 깔끔한 인터페이스를 제공합니다.
+<img src="screenshots/Screen_recording.gif" alt="App Demo" width="250">
