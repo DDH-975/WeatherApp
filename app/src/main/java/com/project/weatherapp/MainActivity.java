@@ -100,10 +100,11 @@ public class MainActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String str = autoCompleteTextView.getText().toString();
+                String noSpaces = str.replaceAll("\\s", "");
+
                 Intent intent = new Intent(MainActivity.this, ShowWeather.class);
-                IntentPut(str, intent);
+                IntentPut(noSpaces, intent);
                 startActivity(intent);
 
             }
