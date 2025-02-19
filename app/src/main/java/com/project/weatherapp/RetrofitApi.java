@@ -2,7 +2,7 @@ package com.project.weatherapp;
 
 
 
-import com.project.weatherapp.SrtFcst.FcstApiRespone;
+import com.project.weatherapp.srtFcst.FcstApiRespone;
 import com.project.weatherapp.srtNcst.NcstApiRespone;
 
 import retrofit2.Call;
