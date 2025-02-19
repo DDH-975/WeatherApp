@@ -98,6 +98,7 @@ public class ApiRequest {
                         }
                         isFcstDataReady = true;
                         checkAndSendData();
+
                         Log.d("Fcst API요청(onResponse) : ", "성공 ");
                     } else {
                         Log.d("Fcst API요청(onResponse) : ", "응답 데이터가 없음");
