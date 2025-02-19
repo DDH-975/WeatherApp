@@ -1,4 +1,4 @@
-package com.project.weatherapp.SrtFcst;
+package com.project.weatherapp.srtFcst;
 
 public class Body {
     private String dataType;

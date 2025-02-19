@@ -1,4 +1,4 @@
-package com.project.weatherapp.SrtFcst;
+package com.project.weatherapp.srtFcst;
 
 public class FcstApiRespone {
     private Response response;

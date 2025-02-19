@@ -1,4 +1,4 @@
-package com.project.weatherapp.SrtFcst;
+package com.project.weatherapp.srtFcst;
 
 public class Item {
     private String baseDate;
@@ -9,6 +9,7 @@ public class Item {
     private int nx;
     private int ny;
     private String fcstValue;
+
 
     public String getBaseDate() {
         return baseDate;
