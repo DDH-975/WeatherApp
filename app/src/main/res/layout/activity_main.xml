@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundimg1"
+    android:background="@drawable/backgroundimg3"
     tools:context=".MainActivity">
 
 
@@ -29,13 +29,13 @@
         android:id="@+id/ACTextView"
         android:layout_width="350dp"
         android:layout_height="48dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/edittext_background"
+        android:dropDownHeight="50dp"
         android:fontFamily="@font/jua"
         android:hint="현재 거주 중인 도시를 입력해주세요!"
         android:padding="10dp"
         android:textColor="#000000"
-        android:dropDownHeight="50dp"
         android:textColorHint="#888888"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -46,17 +46,17 @@
         android:id="@+id/searchButton"
         android:layout_width="350dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="78dp"
+        android:layout_marginTop="15dp"
         android:backgroundTint="#4B8C8D"
         android:fontFamily="@font/jua"
         android:text="날씨 검색"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/titleText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ACTextView" />
 
     <TextView
         android:id="@+id/titleText"
@@ -65,7 +65,7 @@
         android:fontFamily="@font/jua"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Retrofit 사이드 프로젝트"
+        android:text="Retrofit 프로젝트"
         android:textColor="#333333"
         android:textSize="20sp"
         android:textStyle="bold"
