@@ -3,8 +3,12 @@ package com.project.weatherapp;
 import android.content.Context;
 import android.util.Log;
 
+import com.project.weatherapp.futureRecyclerView.RecyclerDataModel;
 import com.project.weatherapp.srtFcst.FcstApiRespone;
+import com.project.weatherapp.srtFcst.Item;
 import com.project.weatherapp.srtNcst.NcstApiRespone;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,10 +31,11 @@ public class ApiRequest {
     private boolean isFcstDataReady = false;
     private ApiCallBack apiCallBack;
     private String temperature, precipitation, humidity, precipitationType, skyCondition;
+    private RecyclerDataModel dataModel;
 
     public interface ApiCallBack {
         void onNcstDataReceived(String temperature, String precipitation, String humidity,
-                                String precipitationType, String skyCondition);
+                                String precipitationType, String skyCondition, RecyclerDataModel dataModel);
     }
 
     public ApiRequest(Context context, String fcstTime, String fcstDate, String ncstTime,
@@ -51,19 +56,23 @@ public class ApiRequest {
         retrofit = NetworkClient.getRetrofitClient(context);
         retrofitApi = retrofit.create(RetrofitApi.class);
 
+        dataModel = new RecyclerDataModel();
+
         // 초단기실황조회 (Ncst)
         retrofitApi.getDataSrtNcst(Apikey, "1", "10", "JSON", baseDate, ncstTime, nx, ny)
                 .enqueue(new Callback<NcstApiRespone>() {
                     @Override
                     public void onResponse(Call<NcstApiRespone> call, Response<NcstApiRespone> response) {
                         if (response.isSuccessful() && response.body() != null) {
+                            Log.d("Ncst API요청(onResponse) : ", "성공 ");
                             NcstApiRespone data = response.body();
                             temperature = data.getResponse().getBody().getItmes().getItem().get(3).getObsrValue();
                             precipitation = data.getResponse().getBody().getItmes().getItem().get(2).getObsrValue();
                             humidity = data.getResponse().getBody().getItmes().getItem().get(1).getObsrValue();
                             precipitationType = data.getResponse().getBody().getItmes().getItem().get(0).getObsrValue();
                             isNcstDataReady = true;
-                            Log.d("Ncst API요청(onResponse) : ", "성공 ");
+                            Log.d("NcstReady","NcstReady : "+isNcstDataReady);
+
                         } else {
                             Log.d("Ncst API요청(onResponse) : ", "응답 데이터가 없음");
                         }
@@ -85,18 +94,28 @@ public class ApiRequest {
                     FcstApiRespone data = response.body();
                     int count = 0;
                     if (data != null) {
-                        while (true) {
-                            String category = data.getResponse().getBody().getItmes().getItem().get(count).getCategory();
-                            if (category.equals("SKY")) {
-                                skyCondition = data.getResponse().getBody().getItmes().getItem().get(count).getFcstValue();
+                        for(Item item : data.getResponse().getBody().getItmes().getItem()){
+                            if(item.getCategory().equals("SKY")){
+                                skyCondition = item.getFcstValue();
                                 Log.d("Fcst API요청(onResponse) : ", "SKY : " + skyCondition);
-                                count = 0;
                                 break;
-                            } else {
-                                count++;
                             }
                         }
+
+                        for (Item item : data.getResponse().getBody().getItmes().getItem()) {
+                            if (item.getCategory().equals("PTY")) {
+                                dataModel.addListPtyData(item.getFcstValue());
+                                dataModel.addListDateData(item.getFcstDate());
+                                dataModel.addListTimeData(item.getFcstTime());
+                            } else if (item.getCategory().equals("SKY")) {
+                                dataModel.addListSkyData(item.getFcstValue());
+                            } else if (item.getCategory().equals("T1H")) {
+                                dataModel.addListTemperatureData(item.getFcstValue());
+                            }
+                        }
+
                         isFcstDataReady = true;
+                        Log.d("FcstReady","FcstReady : "+isFcstDataReady);
                         checkAndSendData();
 
                         Log.d("Fcst API요청(onResponse) : ", "성공 ");
@@ -121,10 +140,11 @@ public class ApiRequest {
     //  데이터가 준비되었는지 확인하고 콜백 호출
     private void checkAndSendData() {
         if (isNcstDataReady && isFcstDataReady) {
-            Log.i("checkAndSendData()","둘다 true 임");
-            apiCallBack.onNcstDataReceived(temperature, precipitation, humidity, precipitationType, skyCondition);
-        }else {
-            Log.i("checkAndSendData()","아님 뭐가 잘못됨");
+            Log.i("checkAndSendData()", "둘다 true 임");
+            apiCallBack.onNcstDataReceived(temperature, precipitation, humidity, precipitationType,
+                    skyCondition, dataModel);
+        } else {
+            Log.i("checkAndSendData()", "아님 뭐가 잘못됨");
         }
     }
 
