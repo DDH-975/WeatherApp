@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.project.weatherapp.futureRecyclerView.RecyclerDataModel;
 import com.project.weatherapp.pager_fragment.PagerAdapter;
 
 import java.time.LocalDate;
@@ -133,7 +134,7 @@ public class ShowWeather extends AppCompatActivity {
                 new ApiRequest.ApiCallBack() {
                     @Override
                     public void onNcstDataReceived(String temperature, String precipitation,
-                                                   String humidity, String precipitationType, String skyCondition) {
+                                                   String humidity, String precipitationType, String skyCondition, RecyclerDataModel dataModel) {
 
                             viewPager2.post(new Runnable() {
                                 @Override
@@ -148,7 +149,7 @@ public class ShowWeather extends AppCompatActivity {
                                         adapter = new PagerAdapter(ShowWeather.this,
                                                 ShowWeather.this.temperature, ShowWeather.this.precipitation,
                                                 ShowWeather.this.humidity, ShowWeather.this.precipitationType,
-                                                ShowWeather.this.skyCondition);
+                                                ShowWeather.this.skyCondition, dataModel);
                                         viewPager2.setAdapter(adapter);
                                         circleIndicator3.setViewPager(viewPager2);
                                     }
