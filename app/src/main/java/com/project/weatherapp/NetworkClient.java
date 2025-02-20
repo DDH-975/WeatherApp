@@ -23,8 +23,8 @@ public class NetworkClient {
             Interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
             OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(1, TimeUnit.MINUTES)
-                    .readTimeout(5, TimeUnit.MINUTES)
-                    .writeTimeout(5, TimeUnit.MINUTES)
+                    .readTimeout(10, TimeUnit.MINUTES)
+                    .writeTimeout(10, TimeUnit.MINUTES)
                     .addInterceptor(Interceptor)
                     .build();
 
