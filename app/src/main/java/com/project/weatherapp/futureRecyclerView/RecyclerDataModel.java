@@ -1,8 +1,6 @@
 package com.project.weatherapp.futureRecyclerView;
 
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class RecyclerDataModel {
@@ -13,7 +11,6 @@ public class RecyclerDataModel {
     private ArrayList<String> dateList = new ArrayList<>();
 
     public void addListSkyData(String skyData) {
-        Log.d("addListSkyData","sky : "+skyData);
         skyList.add(skyData);
     }
 
