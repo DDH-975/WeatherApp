@@ -57,46 +57,42 @@ public class ShowWeather extends AppCompatActivity {
 
 
     public TimeResult FcstTime() {
-        LocalTime currentTime = LocalTime.now();
-        LocalDate currentDate = LocalDate.now();
-        LocalDate baseDate = currentDate; // 기본적으로 오늘 날짜로 설정
-        LocalTime baseTime;
+        LocalTime currentTime = LocalTime.now().minusMinutes(15); // 15분 전 기준
+        LocalDate baseDate = LocalDate.now();
 
-        // 0~29분일 경우 전 시간 30분, 날짜가 전날일 가능성 처리
-        if (currentTime.getMinute() < 30) {
-            baseTime = currentTime.minusHours(1).withMinute(30).withSecond(0).withNano(0);
-            if (currentTime.getHour() == 0) { // 자정일 경우
-                baseDate = currentDate.minusDays(1); // 날짜를 하루 전으로 설정
-            }
-        } else {
-            // 30~59분일 경우 현재 시간의 30분으로 설정
-            baseTime = currentTime.withMinute(30).withSecond(0).withNano(0);
+        if (currentTime.getHour() == 23 && LocalTime.now().getHour() == 0) {
+            // 자정 넘어간 경우 날짜 보정
+            baseDate = baseDate.minusDays(1);
         }
 
-        String formattedBaseTime = baseTime.format(DateTimeFormatter.ofPattern("HHmm"));
+        int hour = currentTime.getHour();
+        String baseTime = String.format("%02d30", hour);
+
         String formattedBaseDate = baseDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-        Log.d("FcstTime", "BaseDate: " + formattedBaseDate + ", BaseTime: " + formattedBaseTime);
-
-        return new TimeResult(formattedBaseDate, formattedBaseTime);
+        Log.d("FcstTime_Adjusted", "BaseDate: " + formattedBaseDate + ", BaseTime: " + baseTime);
+        return new TimeResult(formattedBaseDate, baseTime);
     }
+
 
     //초단기실황 시간 계산 메서드
     public String NcstTime() {
-        LocalTime currentTime = LocalTime.now();
+        LocalTime currentTime = LocalTime.now().minusMinutes(10); // 약간 보정
 
+        int hour = currentTime.getHour();
         int minute = currentTime.getMinute();
-        LocalTime baseTime;
+        int baseMinute;
 
-        if (minute < 10) {
-            baseTime = currentTime.minusHours(1).withMinute(59).withSecond(0).withNano(0);
+        if (minute < 30) {
+            baseMinute = 0;
         } else {
-            baseTime = LocalTime.now().withSecond(0).withNano(0);
+            baseMinute = 30;
         }
 
-        String formattedBaseTime = baseTime.format(DateTimeFormatter.ofPattern("HHmm"));
-        return formattedBaseTime;
+        LocalTime baseTime = LocalTime.of(hour, baseMinute);
+        return baseTime.format(DateTimeFormatter.ofPattern("HHmm"));
     }
+
 
 
     @Override
