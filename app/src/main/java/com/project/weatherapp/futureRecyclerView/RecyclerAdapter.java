@@ -1,5 +1,6 @@
 package com.project.weatherapp.futureRecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Viewho
         String time = dataModel.getTimeList().get(position);
         String formattedTime = time.substring(0,2)+" : "+ time.substring(2);
         String date = dataModel.getDateList().get(position);
-        String formattedDate = date.substring(0,4)+"년 "+date.substring(3,4)+"월 "+ date.substring(6)+"일";
+        Log.d("date", date);
+        String formattedDate = date.substring(0,4)+"년 "+date.substring(4,6)+"월 "+ date.substring(6,8)+"일";
 
         holder.tv_date.setText(formattedDate);
         holder.tv_time.setText(formattedTime);
