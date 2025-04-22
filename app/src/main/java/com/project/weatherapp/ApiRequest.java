@@ -70,7 +70,7 @@ public class ApiRequest {
                             precipitationType = data.getResponse().getBody().getItmes().getItem().get(0).getObsrValue();
                             isNcstDataReady = true;
                             Log.d("NcstReady", "NcstReady : " + isNcstDataReady);
-
+                            checkAndSendData();
                         } else {
                             Log.d("Ncst API요청(onResponse) : ", "응답 데이터가 없음");
                         }
