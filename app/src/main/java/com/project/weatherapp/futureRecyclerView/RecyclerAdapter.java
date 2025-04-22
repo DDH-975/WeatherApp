@@ -36,7 +36,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Viewho
         String time = dataModel.getTimeList().get(position);
         String formattedTime = time.substring(0,2)+" : "+ time.substring(2);
         String date = dataModel.getDateList().get(position);
-        Log.d("date", date);
         String formattedDate = date.substring(0,4)+"년 "+date.substring(4,6)+"월 "+ date.substring(6,8)+"일";
 
         holder.tv_date.setText(formattedDate);

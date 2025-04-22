@@ -24,8 +24,6 @@ public class PagerAdapter extends FragmentStateAdapter {
         this.skyCondition = skyCondition;
         this.dataModel = dataModel;
         Log.d("ShowWeather", "setViewPager() 호출됨");
-        Log.d("data test", "temperature:" + temperature + "\nprecipitation:" + precipitation);
-
     }
 
     @NonNull

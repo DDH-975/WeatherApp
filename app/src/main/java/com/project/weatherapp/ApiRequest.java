@@ -8,8 +8,6 @@ import com.project.weatherapp.srtFcst.FcstApiRespone;
 import com.project.weatherapp.srtFcst.Item;
 import com.project.weatherapp.srtNcst.NcstApiRespone;
 
-import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,7 +69,7 @@ public class ApiRequest {
                             humidity = data.getResponse().getBody().getItmes().getItem().get(1).getObsrValue();
                             precipitationType = data.getResponse().getBody().getItmes().getItem().get(0).getObsrValue();
                             isNcstDataReady = true;
-                            Log.d("NcstReady","NcstReady : "+isNcstDataReady);
+                            Log.d("NcstReady", "NcstReady : " + isNcstDataReady);
 
                         } else {
                             Log.d("Ncst API요청(onResponse) : ", "응답 데이터가 없음");
@@ -92,12 +90,10 @@ public class ApiRequest {
             public void onResponse(Call<FcstApiRespone> call, Response<FcstApiRespone> response) {
                 if (response.isSuccessful()) {
                     FcstApiRespone data = response.body();
-                    int count = 0;
                     if (data != null) {
-                        for(Item item : data.getResponse().getBody().getItmes().getItem()){
-                            if(item.getCategory().equals("SKY")){
+                        for (Item item : data.getResponse().getBody().getItmes().getItem()) {
+                            if (item.getCategory().equals("SKY")) {
                                 skyCondition = item.getFcstValue();
-                                Log.d("Fcst API요청(onResponse) : ", "SKY : " + skyCondition);
                                 break;
                             }
                         }
@@ -115,7 +111,7 @@ public class ApiRequest {
                         }
 
                         isFcstDataReady = true;
-                        Log.d("FcstReady","FcstReady : "+isFcstDataReady);
+                        Log.d("FcstReady", "FcstReady : " + isFcstDataReady);
                         checkAndSendData();
 
                         Log.d("Fcst API요청(onResponse) : ", "성공 ");
